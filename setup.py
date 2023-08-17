@@ -5,7 +5,7 @@ import setuptools.command.build_py
 
 
 setup(
-    name="pam-monitoring",
+    name="pam_monitoring",
     version="0.1.0",
     description="PAM (Prometheus Automatic Monitoring)",
     author="Emanuele Graziano",
@@ -16,6 +16,6 @@ setup(
         "prometheus_client>=0.17.1",
         "grpc_interceptor>=0.15.3",
     ],
-    url="https://github.com/conductive/py-grpc-prometheus",
+    url="https://github.com/conductive/pam-monitoring",
     packages=find_packages(exclude=["examples.*", "examples"]),
 )
