@@ -17,5 +17,5 @@ setup(
         "grpc_interceptor>=0.15.3",
     ],
     url="https://github.com/conductive/pam-monitoring",
-    packages=find_packages(exclude=["examples.*", "examples"]),
+    packages=find_packages(include=["pam_monitoring"]),
 )
