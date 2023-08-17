@@ -1,5 +1,6 @@
 import sys
 import grpc
+from prometheus_client import start_http_server
 
 def get_size(obj):
     # If the object has a length, return it
@@ -20,3 +21,6 @@ def GetStatusFromCode(code):
         if status.value[0] == code:
             return status
     return None
+
+def Start(port=8000):
+    start_http_server(port)
