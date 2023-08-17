@@ -6,7 +6,7 @@ from typing import Callable, Any
 import grpc
 import asyncio
 from timeit import default_timer
-import pam_monitoring.utils
+from pam_monitoring import utils
 
 from grpc.aio import ServerInterceptor
 
