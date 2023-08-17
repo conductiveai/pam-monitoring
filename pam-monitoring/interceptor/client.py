@@ -48,7 +48,6 @@ class ClientMetricsInterceptor(UnaryUnaryClientInterceptor, UnaryStreamClientInt
         self.request_size_summary.labels(service_name, method_name).observe(request_size)
 
         call = await continuation(client_call_details, request_or_iterator)
-
         try:
             with self.request_latency.labels(service_name, method_name).time():
                 if isinstance(call, (UnaryUnaryCall, StreamUnaryCall)):
@@ -64,11 +63,9 @@ class ClientMetricsInterceptor(UnaryUnaryClientInterceptor, UnaryStreamClientInt
                             yield resp
                     return response_iterator()
         except AioRpcError as e:
-            print("gRPC ERROR found in client")
             self.error_counter.labels(service_name, method_name, str(e.code())).inc()
             raise
         except Exception as e:
-            print("ERROR found in client")
             self.error_counter.labels(service_name, method_name, type(e).__name__).inc()
             raise
         finally:

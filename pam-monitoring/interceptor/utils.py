@@ -1,4 +1,5 @@
 import sys
+import grpc
 
 def get_size(obj):
     # If the object has a length, return it
@@ -13,3 +14,9 @@ def get_size(obj):
     else:
         # This is a fallback and may not be accurate for all types
         return sys.getsizeof(obj)
+    
+def GetStatusFromCode(code):
+    for status in grpc.StatusCode:
+        if status.value[0] == code:
+            return status
+    return None
