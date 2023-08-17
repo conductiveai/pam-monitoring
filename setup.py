@@ -12,7 +12,7 @@ setup(
     author_email="emanuele@conductive.ai",
     install_requires=[
         "setuptools>=39.0.1",
-        "grpc>=1.0.0",
+        "grpcio>=1.51.1",
         "prometheus_client>=0.17.1",
         "grpc_interceptor>=0.15.3",
     ],
