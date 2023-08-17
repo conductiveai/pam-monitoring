@@ -2,7 +2,7 @@ from grpc.aio import UnaryUnaryClientInterceptor, UnaryStreamClientInterceptor, 
 from grpc.aio import AioRpcError, UnaryUnaryCall, UnaryStreamCall, StreamUnaryCall, StreamStreamCall
 
 from prometheus_client import Counter, Histogram, Gauge, Summary
-import utils
+import pam_monitoring.utils
 class ClientMetricsInterceptor(UnaryUnaryClientInterceptor, UnaryStreamClientInterceptor, StreamUnaryClientInterceptor, StreamStreamClientInterceptor):
     def __init__(self):
         self.request_counter = Counter(
