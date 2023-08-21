@@ -67,6 +67,9 @@ class AsyncExceptionToStatusInterceptor(AsyncServerInterceptor):
             self.active_requests.labels(service_name, service_method).dec()
         # Server streaming responses, delegate to an async generator helper.
         # Note that we do NOT await this.
+        # but we re-add 1 to the acive requests as the previous one was decreased in the finally block.
+        # This is kind of a hack, but seems to be the simplest way to fix it without having do go on a full-on refactor.
+        self.active_requests.labels(service_name, service_method).inc()
         return self._intercept_streaming(response_or_iterator, context, service_name, service_method, start)
 
 
