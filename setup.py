@@ -14,7 +14,7 @@ setup(
         "setuptools>=39.0.1",
         "grpcio>=1.51.1",
         "prometheus_client>=0.17.1",
-        "grpc_interceptor>=0.15.3",
+        "grpc_interceptor>=0.15.4",
     ],
     url="https://github.com/conductive/pam-monitoring",
     packages=find_packages(include=["pam_monitoring"]),
