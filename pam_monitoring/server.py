@@ -3,6 +3,7 @@ from grpc_interceptor.exceptions import GrpcException
 from grpc_interceptor.server import AsyncServerInterceptor
 from typing import Callable, Any
 
+import inspect
 import grpc
 import asyncio
 from timeit import default_timer
@@ -53,7 +54,10 @@ class AsyncExceptionToStatusInterceptor(AsyncServerInterceptor):
             response_or_iterator = method(request_or_iterator, context)
             if not hasattr(response_or_iterator, "__aiter__"):
                 # Unary, just await and return the response
-                return await response_or_iterator
+                if inspect.iscoroutinefunction(response_or_iterator):
+                    return await response_or_iterator
+                else:
+                    return response_or_iterator
         except GrpcException as e:
             await context.set_code(e.status_code)
             await context.set_details(e.details)
