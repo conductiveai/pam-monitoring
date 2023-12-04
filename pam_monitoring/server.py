@@ -54,10 +54,7 @@ class AsyncExceptionToStatusInterceptor(AsyncServerInterceptor):
             response_or_iterator = method(request_or_iterator, context)
             if not hasattr(response_or_iterator, "__aiter__"):
                 # Unary, just await and return the response
-                if inspect.isawaitable(response_or_iterator):
-                    return await response_or_iterator
-                else:
-                    return response_or_iterator
+                return await response_or_iterator
         except GrpcException as e:
             await context.set_code(e.status_code)
             await context.set_details(e.details)
